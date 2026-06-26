@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенты</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/e0534cbc26.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo logo ml-120" width="240px" height="70px">
+                <a href="/index.html"><img src="/image/it_logo.png" width="70px" height="70px" mode=""></a>
+                <div class="logo__text">БГИТУ <br><div class="logo__info">Биржа фриланса</div></div>
+            </div>
+            <nav class="header__nav nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="tasks-company.html" class="nav__link">Задачи</a></li>
+                    <li class="nav__item" data-role="company-only"><a href="students-company.html" class="nav__link nav__link--active">Студенты</a></li>
+                    <li class="nav__item" data-role="student-only"><a href="companies-student.html" class="nav__link">Работодатели</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions--log">
+                <a href="#create-order" class="header__btn btn__order--log" data-role="company-only">Создать заказ</a>
+                <div class="actions__group">
+                    <!-- Кнопка Выйти -->
+                    <button class="header__auth-logout" type="button">Выйти</button>
+                    
+                    <!-- Иконка профиля -->
+                    <a href="#profile" class="header__profile-avatar">
+                        <div><i class="fa-regular fa-user"></i></div>
+                    </a>
+
+                    <!-- Кнопка темы с вашей луной -->
+                    <button class="header__btn header__btn--theme" type="button" aria-label="Переключить тему"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7909 2.16846C6.40197 2.54492 2.14738 7.02665 2.14738 12.5C2.14738 18.2201 6.79422 22.8571 12.5264 22.8571C17.1187 22.8571 21.0152 19.8803 22.3826 15.7552C21.3303 16.1891 20.1769 16.4286 18.9685 16.4286C14.027 16.4286 10.0211 12.4311 10.0211 7.5C10.0211 5.50122 10.6798 3.65584 11.7909 2.16846ZM0 12.5C0 5.59644 5.60825 0 12.5264 0C13.17 0 13.803 0.0485373 14.4217 0.142313C14.8497 0.207184 15.1968 0.522192 15.302 0.941231C15.4072 1.36027 15.2499 1.80136 14.9031 2.05992C13.2411 3.29907 12.1685 5.2744 12.1685 7.5C12.1685 11.2476 15.213 14.2857 18.9685 14.2857C20.5923 14.2857 22.0805 13.7191 23.2497 12.7723C23.5857 12.5003 24.0525 12.456 24.4338 12.6601C24.8151 12.8642 25.0364 13.2768 24.9951 13.7066C24.3861 20.0446 19.0368 25 12.5264 25C5.60825 25 0 19.4036 0 12.5Z" fill="black"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="students-page-layout">
+        <h1 class="students-page-layout__title gradient-text">СТУДЕНТЫ</h1>
+
+        <!-- Сетка карточек студентов (2 колонки) -->
+        <div class="students-grid-container">
+
+            <!-- Студент 1: Даниил Воронов -->
+            <article class="student-card-item" data-id="static_student_0">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/daniil.jpg" alt="Даниил Воронов">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Даниил Воронов</h3>
+                        <p class="student-card-item__spec">Web-разработка<br>(Frontend)</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Junior+</span>
+                            <span class="student-card-item__course">3 курс</span>
+                            <span class="student-card-item__rating">4.7 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28278 10.3408 4.28278C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Студент 2: Анна Ковалева -->
+            <article class="student-card-item" data-id="static_student_1">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/anna.jpg" alt="Анна Ковалева">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Анна Ковалева</h3>
+                        <p class="student-card-item__spec">UI/UX-дизайн</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Middle</span>
+                            <span class="student-card-item__course">4 курс</span>
+                            <span class="student-card-item__rating">5.0 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Студент 3: Илья Резников -->
+            <article class="student-card-item" data-id="static_student_2">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/ilya.jpg" alt="Илья Резников">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Илья Резников</h3>
+                        <p class="student-card-item__spec">Разработка ботов</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Junior</span>
+                            <span class="student-card-item__course">2 курс</span>
+                            <span class="student-card-item__rating">4.2 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Студент 4: Мария Дмитриева -->
+            <article class="student-card-item" data-id="static_student_3">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/mariya.jpg" alt="Мария Дмитриева">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Мария Дмитриева</h3>
+                        <p class="student-card-item__spec">Графический дизайн</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Junior+</span>
+                            <span class="student-card-item__course">3 курс</span>
+                            <span class="student-card-item__rating">4.5 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Студент 5: Артем Лазарев -->
+            <article class="student-card-item" data-id="static_student_4">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/artem.jpg" alt="Артем Лазарев">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Артем Лазарев</h3>
+                        <p class="student-card-item__spec">Анализ данных<br>(Data Science)</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Middle</span>
+                            <span class="student-card-item__course">4 курс</span>
+                            <span class="student-card-item__rating">4.9 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Студент 6: Никита Соколов -->
+            <article class="student-card-item" data-id="static_student_5">
+                <div class="student-card-item__main">
+                    <div class="student-card-item__avatar">
+                        <img src="/image/nikita.jpg" alt="Никита Соколов">
+                    </div>
+                    <div class="student-card-item__content">
+                        <h3 class="student-card-item__name gradient-card">Никита Соколов</h3>
+                        <p class="student-card-item__spec">Мобильная разработка<br>(Flutter)</p>
+                        <div class="student-card-item__row">
+                            <span class="student-card-item__level">Junior+</span>
+                            <span class="student-card-item__course">2 курс</span>
+                            <span class="student-card-item__rating">4.6 / 5</span>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg class="heart-icon--outline" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80248 17.0525 1.88322 14.5952 1.88322C13.184 1.88322 11.8662 2.77868 11.0434 3.91522C10.8756 4.14697 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14697 9.6381 3.91522C8.81529 2.77868 7.49752 1.88322 6.08628 1.88322Z" fill="black"/>
+                                </svg>
+                                <svg class="heart-icon--filled" xmlns="http://w3.org" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path d="M10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 13.7191 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997Z" fill="#C70000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__brand-block">
+                <div class="footer__logo logo" width="240px" height="70px">
+                    <a href="/index.html"><image src="/image/it_logo.png" width="70px" height="70px" mode=""></a>
+                    <div class="logo__text">БГИТУ <br><div class="logo__info">Биржа фриланса</div></div>
+                </div>
+            </div>
+
+            <div class="footer__nav-group">
+                <div class="footer__nav-column">
+                    <h4 class="footer__nav-title">Студенту</h4>
+                    <ul class="footer__nav-list">
+                        <li><a href="tasks-company.html" class="footer__nav-link">Задачи</a></li>
+                        <li><a href="companies-student.html" class="footer__nav-link">Работодатели</a></li>
+                    </ul>
+                </div>
+                <div class="footer__nav-column">
+                    <h4 class="footer__nav-title">Работодателю</h4>
+                    <ul class="footer__nav-list">
+                        <li><a href="tasks-company.html" class="footer__nav-link">Задачи</a></li>
+                        <li><a href="students-company.html" class="footer__nav-link">Студенты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="footer__bottom">
+                <a href="https://bgitu.ru" target="" rel="" class="footer__link">Официальный сайт БГИТУ</a>
+                <a href="https://vk.com/bgitu_ru" class="footer__social" aria-label="Мы ВКонтакте"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="47" viewBox="0 0 48 47" fill="none">
+                    <path d="M0 22.3341C0 11.8057 0 6.54152 3.37413 3.27076C6.74826 0 12.1788 0 23.04 0H24.96C35.8212 0 41.2517 0 44.6259 3.27076C48 6.54152 48 11.8057 48 22.3341V24.1953C48 34.7238 48 39.9879 44.6259 43.2587C41.2517 46.5294 35.8212 46.5294 24.96 46.5294H23.04C12.1788 46.5294 6.74826 46.5294 3.37413 43.2587C0 39.9879 0 34.7238 0 24.1953V22.3341Z" fill="#0077FF"/>
+                    <path d="M25.54 33.5207C14.6 33.5207 8.3601 26.2505 8.1001 14.1528H13.5801C13.7601 23.0322 17.8 26.7933 21 27.5688V14.1528H26.1602V21.8108C29.3202 21.4812 32.6398 17.9915 33.7598 14.1528H38.9199C38.0599 18.8833 34.4599 22.373 31.8999 23.8077C34.4599 24.9709 38.5601 28.0147 40.1201 33.5207H34.4399C33.2199 29.8371 30.1802 26.9872 26.1602 26.5995V33.5207H25.54Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+    </footer>
+
+
+
+
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-window">
+            <button class="modal-close-btn" id="closeModalBtn" type="button" aria-label="Закрыть">&times;</button>
+            
+            <form class="order-form" id="createOrderForm">
+                <!-- Название задачи (Сохраняем поле ввода имени) -->
+                <input type="text" class="order-form__input" id="taskTitle" placeholder="Название задачи" required>
+                
+                <!-- Бюджет (от / до / фикс и поле Оплата как на скриншоте) -->
+                <div class="order-form__row">
+                    <div class="order-form__checkbox-group">
+                        <input type="radio" id="priceFromCheck" name="priceType" value="от ">
+                        <label for="priceFromCheck">от</label>
+                    </div>
+                    <div class="order-form__checkbox-group">
+                        <input type="radio" id="priceToCheck" name="priceType" value="до ">
+                        <label for="priceToCheck">до</label>
+                    </div>
+                    <div class="order-form__checkbox-group">
+                        <input type="radio" id="priceNoneCheck" name="priceType" value="" checked>
+                        <label for="priceNoneCheck">фикс.</label>
+                    </div>
+                    <input type="text" class="order-form__input order-form__input--price" id="taskPrice" placeholder="Оплата" required>
+                </div>
+                
+                <!-- Срочность и Уровень задачи -->
+                <div class="order-form__row">
+                    <div class="order-form__checkbox-group">
+                        <input type="checkbox" id="urgentTask">
+                        <label for="urgentTask">Срочная задача</label>
+                    </div>
+                    <div class="line--vert"></div>
+                    <div class="order-form__level-selection">
+                        <span>Уровень:</span>
+                        <label class="level-radio"><input type="radio" name="level" value="Junior" checked> Junior</label>
+                        <label class="level-radio"><input type="radio" name="level" value="Middle"> Middle</label>
+                        <label class="level-radio"><input type="radio" name="level" value="Senior"> Senior</label>
+                    </div>
+                </div>
+                
+                <!-- Фильтры/Теги (Полный набор элементов в точности со скриншота) -->
+                <div class="order-form__filters-box">
+                    <p class="filters-box__title">Фильтры:</p>
+                    <div class="filters-box__tags" id="modalTagsContainer">
+                        <span class="modal-tag" data-tag="Android / iOS">Android / iOS</span>
+                        <span class="modal-tag" data-tag="Frontend">Frontend</span>
+                        <span class="modal-tag" data-tag="Backend">Backend</span>
+                        <span class="modal-tag" data-tag="Дизайн">Дизайн</span>
+                        <span class="modal-tag" data-tag="Figma">Figma</span>
+                        <span class="modal-tag" data-tag="Аналитика">Аналитика</span>
+                        <span class="modal-tag" data-tag="QA & Support">QA & Support</span>
+                        <span class="modal-tag" data-tag="Python">Python</span>
+                        <span class="modal-tag" data-tag="JavaScript">JavaScript</span>
+                        <span class="modal-tag" data-tag="UI/UX">UI/UX</span>
+                        <span class="modal-tag" data-tag="HTML/CSS">HTML/CSS</span>
+                        <span class="modal-tag" data-tag="SQL">SQL</span>
+                        <span class="modal-tag" data-tag="API">API</span>
+                        <span class="modal-tag" data-tag="Прототипирование">Прототипирование</span>
+                        <span class="modal-tag" data-tag="Боты">Боты</span>
+                        <span class="modal-tag" data-tag="Тестирование">Тестирование</span>
+                        <span class="modal-tag" data-tag="Графический дизайн">Графический дизайн</span>
+                        <span class="modal-tag" data-tag="Баннеры">Баннеры</span>
+                        <span class="modal-tag" data-tag="Иллюстрация">Иллюстрация</span>
+                        <span class="modal-tag" data-tag="Machine Learning">Machine Learning</span>
+                        <span class="modal-tag" data-tag="Сбор данных">Сбор данных</span>
+                        <span class="modal-tag" data-tag="Баг-репорты">Баг-репорты</span>
+                        <span class="modal-tag" data-tag="Data Science">Data Science</span>
+                        <span class="modal-tag" data-tag="Скрипты">Скрипты</span>
+                        <span class="modal-tag" data-tag="Разработка сайтов">Разработка сайтов</span>
+                    </div>
+                </div>
+                
+                <!-- Стек разработок -->
+                <input type="text" class="order-form__input" id="taskStack" placeholder="Стек">
+                
+                <!-- Текстовое описание -->
+                <textarea class="order-form__textarea" id="taskDesc" placeholder="Описание" rows="3"></textarea>
+                
+                <!-- Срок выполнения и кнопка публикации -->
+                <div class="order-form__row order-form__row--footer">
+                    <input type="text" class="order-form__input order-form__input--date" id="taskDeadline" placeholder="Срок сдачи">
+                    <button type="submit" class="order-form__submit-btn">Опубликовать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
