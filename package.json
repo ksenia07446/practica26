@@ -1,7 +1,9 @@
 {
+    "engines": {
+        "node": "20.x"
+    },
     "name": "bgitu-freelance",
     "version": "1.0.0",
-    "description": "Биржа фриланса БГИТУ",
     "main": "server.js",
     "scripts": {
         "start": "node server.js"
