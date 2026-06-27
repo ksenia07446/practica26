@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БГИТУ - Биржа фриланса</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/e0534cbc26.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="page">
+
+    <header class="header">
+        <div id="loginModal" class="modal">
+            <div class="modal__content">
+                <span class="modal__close" onclick="closeModal('loginModal')">&times;</span>
+                <div class="login-card">
+                    <h2 class="login-card__title gradient-text">ВХОД</h2>
+                    <form class="login-card__form" id="loginForm">
+                        <input type="email" placeholder="Почта" required class="login-card__input" id="loginEmail">
+                        <input type="password" placeholder="Пароль" required class="login-card__input" id="loginPassword">
+                        <button type="submit" class="login-card__button">Войти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="registerModal" class="modal-right-side">
+            <span class="modal__close" onclick="closeModal('registerModal')">&times;</span>
+            <div class="register-card">
+                <h2 class="register-card__title gradient-text">РЕГИСТРАЦИЯ</h2>
+                
+                <form class="register-card__form" id="registerForm">
+                    <input type="email" id="reg-email" placeholder="Почта" required autocomplete="username" class="register-card__input">
+                    <input type="text" id="reg-name" placeholder="ФИО" required autocomplete="name" class="register-card__input">
+                    <div class="register-card__row">
+                        <span class="register-card__label">Пол</span>
+                        <div class="register-card__toggle-group" id="gender-group">
+                            <button type="button" class="register-card__toggle-btn" onclick="selectToggle('gender', this)">Женский</button>
+                            <button type="button" class="register-card__toggle-btn" onclick="selectToggle('gender', this)">Мужской</button>
+                        </div>
+                    </div>
+
+                    <div class="register-card__row">
+                        <span class="register-card__label">Статус</span>
+                        <div class="register-card__toggle-group" id="status-group">
+                            <button type="button" class="register-card__toggle-btn active" onclick="selectToggle('status', this, 'company')">Компания</button>
+                            <button type="button" class="register-card__toggle-btn" onclick="selectToggle('status', this, 'student')">Студент</button>
+                        </div>
+                    </div>
+
+                    <div id="dynamic-field-wrapper" class="register-card__dynamic">
+                        <input type="text" placeholder="Название компании" required autocomplete="off" class="register-card__input" id="dynamic-input">
+                    </div>
+
+                    <input type="password" placeholder="Пароль" required autocomplete="new-password" class="register-card__input" id="reg-password">
+                    <input type="password" placeholder="Пароль повторно" required autocomplete="new-password" class="register-card__input" id="reg-password-confirm">
+                    
+                    <button type="submit" class="register-card__submit-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="header__container container">
+            <div class="header__logo logo ml-120" width="240px" height="70px">
+                <a href="/index.html"><img src="/image/it_logo.png" width="70px" height="70px" mode=""></a>
+                <div class="logo__text">БГИТУ <br><div class="logo__info">Биржа фриланса</div></div>
+            </div>
+            <nav class="header__nav nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#tasks-section" class="nav__link">Задачи</a></li>
+                    <li class="nav__item"><a href="#employers-section" class="nav__link">Работодатели</a></li>
+                    <li class="nav__item"><a href="#about-section" class="nav__link">О нас</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <div class="header__auth-box auth-box">
+                    <button class="auth-box__link auth-box__link--login" id="openModalBtn" type="button">Войти</button>
+                    <span class="auth-box__divider">|</span>
+                    <button class="auth-box__link auth-box__link--reg" id="openRegisterBtn" type="button">Регистрация</button>
+                    <div class="auth-box__icon"><i class="fa-regular fa-user"></i></div>
+                </div>
+                <button class="header__btn header__btn--theme" type="button" aria-label="Переключить тему"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7909 2.16846C6.40197 2.54492 2.14738 7.02665 2.14738 12.5C2.14738 18.2201 6.79422 22.8571 12.5264 22.8571C17.1187 22.8571 21.0152 19.8803 22.3826 15.7552C21.3303 16.1891 20.1769 16.4286 18.9685 16.4286C14.027 16.4286 10.0211 12.4311 10.0211 7.5C10.0211 5.50122 10.6798 3.65584 11.7909 2.16846ZM0 12.5C0 5.59644 5.60825 0 12.5264 0C13.17 0 13.803 0.0485373 14.4217 0.142313C14.8497 0.207184 15.1968 0.522192 15.302 0.941231C15.4072 1.36027 15.2499 1.80136 14.9031 2.05992C13.2411 3.29907 12.1685 5.2744 12.1685 7.5C12.1685 11.2476 15.213 14.2857 18.9685 14.2857C20.5923 14.2857 22.0805 13.7191 23.2497 12.7723C23.5857 12.5003 24.0525 12.456 24.4338 12.6601C24.8151 12.8642 25.0364 13.2768 24.9951 13.7066C24.3861 20.0446 19.0368 25 12.5264 25C5.60825 25 0 19.4036 0 12.5Z" fill="black"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <h1 class="hero__title ml-120">
+                        Брать <span class="hero__title--accent-blue">заказы</span> на обычных
+                        <br>биржах <span class="hero__title--accent-blue">сложно</span>
+                    </h1>
+                    <div class="hero__image-wrapper">
+                    <img src="/image/hero.png" alt="" class="hero__image" width="615px" height="500px">
+                </div>
+                    <p class="hero__title hero__title--two">
+                        <span class="hero__title--accent-blue">На нашей</span>—
+                        <br>тебя уже ждут партнеры вуза
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="line"></div>
+
+
+
+        <section class="advantages" >
+            <div class="advantages__container container">
+                <div class="advantages__grid">
+                    <article class="advantage-card">
+                        <div class="advantage-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="63" height="62" viewBox="0 0 63 62" fill="none">
+                            <path d="M47.1672 2H15.4709C8.03114 2 2 7.90282 2 15.1843V46.2062C2 53.4877 8.03114 59.3905 15.4709 59.3905H47.1672C54.607 59.3905 60.6382 53.4877 60.6382 46.2062V15.1843C60.6382 7.90282 54.607 2 47.1672 2Z" stroke="white" stroke-width="4"/>
+                            <path d="M15.7238 43.1714L18.9988 46.9143L24.4572 40.6762" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.7238 18.219L18.9988 21.9619L24.4572 15.7238" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M34.4381 18.219H46.9143" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M34.4381 43.1714H46.9143" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-card__title gradient-text">ОФИЦИАЛЬНЫЕ ЗАКАЗЫ</h3>
+                        <p class="advantage-card__text">Вы работаете напрямую с проверенными партнерами вуза<br>без риска обмана</p>
+                    </article>
+                    <article class="advantage-card">
+                        <div class="advantage-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="58" height="63" viewBox="0 0 58 63" fill="none">
+                            <path d="M13.2286 7.61429C13.2286 4.5136 10.715 2 7.61429 2C4.5136 2 2 4.5136 2 7.61429C2 10.715 4.5136 13.2286 7.61429 13.2286C10.715 13.2286 13.2286 10.715 13.2286 7.61429Z" stroke="white" stroke-width="4"/>
+                            <path d="M33.1906 30.6953C33.1906 27.25 30.3977 24.4572 26.9525 24.4572C23.5072 24.4572 20.7144 27.25 20.7144 30.6953C20.7144 34.1405 23.5072 36.9334 26.9525 36.9334C30.3977 36.9334 33.1906 34.1405 33.1906 30.6953Z" stroke="white" stroke-width="4"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.61429 20.7143C6.58074 20.7143 5.74286 21.8315 5.74286 23.2095V58.1429C5.74286 59.5209 6.58074 60.6381 7.61429 60.6381C8.64784 60.6381 9.48572 59.5209 9.48572 58.1429V23.2095C9.48572 21.8315 8.64784 20.7143 7.61429 20.7143Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M50.0334 2C48.9999 2 48.162 3.08226 48.162 4.41726V38.259C48.162 39.5939 48.9999 40.6762 50.0334 40.6762C51.0669 40.6762 51.9048 39.5939 51.9048 38.259V4.41726C51.9048 3.08226 51.0669 2 50.0334 2Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5762 2C28.6098 2 29.4477 3.09389 29.4477 4.44326V15.8451C29.4477 17.1945 28.6098 18.2884 27.5762 18.2884C26.5427 18.2884 25.7048 17.1945 25.7048 15.8451V4.44326C25.7048 3.09389 26.5427 2 27.5762 2ZM27.5762 44.3498C26.5427 44.3498 25.7048 45.4437 25.7048 46.793V58.1949C25.7048 59.5442 26.5427 60.6382 27.5762 60.6382C28.6098 60.6382 29.4477 59.5442 29.4477 58.1949V46.793C29.4477 45.4437 28.6098 44.3498 27.5762 44.3498Z" fill="white"/>
+                            <path d="M55.6477 55.0239C55.6477 51.9232 53.1341 49.4096 50.0334 49.4096C46.9327 49.4096 44.4191 51.9232 44.4191 55.0239C44.4191 58.1246 46.9327 60.6382 50.0334 60.6382C53.1341 60.6382 55.6477 58.1246 55.6477 55.0239Z" stroke="white" stroke-width="4"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-card__title gradient-text">РЕАЛЬНЫЕ КЕЙСЫ</h3>
+                        <p class="advantage-card__text">Никакой скучной теории — только настоящие задачи от бизнеса в направлениях IT, дизайна и аналитики</p>
+                    </article>
+                    <article class="advantage-card">
+                        <div class="advantage-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="62" height="61" viewBox="0 0 62 61" fill="none">
+                            <path d="M46.2062 2H15.1843C7.90282 2 2 7.7745 2 14.8977V45.2452C2 52.3684 7.90282 58.1429 15.1843 58.1429H46.2062C53.4877 58.1429 59.3905 52.3684 59.3905 45.2452V14.8977C59.3905 7.7745 53.4877 2 46.2062 2Z" stroke="white" stroke-width="4"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M44.4191 20.6434C44.4191 19.3045 43.4169 18.2191 42.1808 18.2191H33.7394C32.5032 18.2191 31.5011 19.3045 31.5011 20.6434C31.5011 21.9823 32.5032 23.0676 33.7394 23.0676H36.7769L29.5675 30.8762L25.2983 26.2523C24.4242 25.3056 23.007 25.3056 22.1329 26.2523L12.6366 36.5377C11.7624 37.4844 11.7624 39.0195 12.6366 39.9662C13.5107 40.913 14.9279 40.913 15.802 39.9662L23.7156 31.395L27.9846 36.0189C28.8587 36.9656 30.276 36.9656 31.1501 36.0189L39.9425 26.496V29.7859C39.9425 31.1248 40.9446 32.2102 42.1808 32.2102C43.4169 32.2102 44.4191 31.1248 44.4191 29.7859V20.6434Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-card__title gradient-text mt--30">БЫСТРЫЙ КАРЬЕРНЫЙ СТАРТ</h3>
+                        <p class="advantage-card__text">Компании используют эту биржу, чтобы найти перспективных<br>новичков</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="tasks" id="tasks-section">
+            <div class="tasks__container container">
+                <h2 class="tasks__title gradient-text">ЗАДАЧИ</h2>
+                <p class="tasks__subtitle">от партнеров вуза</p>
+
+                <div class="tasks__filters filters">
+                    <button class="filters__btn" type="button">Frontend</button>
+                    <button class="filters__btn" type="button">Backend</button>
+                    <button class="filters__btn" type="button">Аналитика</button>
+                    <button class="filters__btn" type="button">Дизайн</button>
+                    <button class="filters__btn" type="button">QA & Support</button>
+                    <button class="filters__btn" type="button">Android / iOS</button>
+                </div>
+
+
+                <div class="tasks__grid">
+                    <!-- Карточка 1-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Парсинг цен конкурентов</h3>
+                            <span class="task-card__price">от 3.500</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/plan.png" alt=""></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Аналитика</span>
+                                <span class="task-card__tag">Python</span>
+                                <span class="task-card__tag">Сбор данных</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 2-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Тестирование раздела акций</h3>
+                            <span class="task-card__price">от 2.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/samokat.png" alt="Самокат"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">QA & Support</span>
+                                <span class="task-card__tag">Тестирование</span>
+                                <span class="task-card__tag">Баг-репорты</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 3-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Бот для курьеров</h3>
+                            <span class="task-card__price">от 5.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/yandex_lavka.png" alt="Яндекс Лавка"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Backend</span>
+                                <span class="task-card__tag">Python</span>
+                                <span class="task-card__tag">Боты</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 4-->
+                    <article class="task-card task-card--hot">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Верстка карточки товара</h3>
+                            <span class="task-card__price">от 4.500</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/megamarket.png" alt="Мегамаркет"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Frontend</span>
+                                <span class="task-card__tag">HTML/CSS</span>
+                                <span class="task-card__tag">Figma</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 5-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Прогноз модели спроса</h3>
+                            <span class="task-card__price">от 25.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level" style="color: #4A90E2;">Middle</span>
+                            <span class="task-card__company"><img src="/image/plan.png" alt="Самолет"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Аналитика</span>
+                                <span class="task-card__tag">Data Science</span>
+                                <span class="task-card__tag">Machine Learning</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 6-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Тестирование формы заказа</h3>
+                            <span class="task-card__price">от 2.500</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/vkusno-i-tochka.png" alt=""></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">QA & Support</span>
+                                <span class="task-card__tag">Тестирование</span>
+                                <span class="task-card__tag">Android</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 7-->
+                    <article class="task-card task-card--hot">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Баннеры для соцсетей</h3>
+                            <span class="task-card__price">от 3.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/netologia.png" alt="Нетология"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Дизайн</span>
+                                <span class="task-card__tag">Графический дизайн</span>
+                                <span class="task-card__tag">Баннеры</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 8-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Дизайн иконок меню</h3>
+                            <span class="task-card__price">до 4.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/yandex_lavka.png" alt="Яндекс Лавка"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Дизайн</span>
+                                <span class="task-card__tag">Иллюстрация</span>
+                                <span class="task-card__tag">Figma</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 9-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Интеграция API доставки</h3>
+                            <span class="task-card__price">от 6.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level">Junior</span>
+                            <span class="task-card__company"><img src="/image/megamarket.png" alt="Мегамаркет"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Backend</span>
+                                <span class="task-card__tag">API</span>
+                                <span class="task-card__tag">JavaScript</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 10-->
+                    <article class="task-card">
+                        <div class="task-card__header">
+                            <h3 class="task-card__title gradient-card">Редизайн экрана корзины</h3>
+                            <span class="task-card__price">от 18.000</span>
+                        </div>
+                        <div class="task-card__info">
+                            <span class="task-card__level" style="color: #4A90E2;">Middle</span>
+                            <span class="task-card__company"><img src="/image/samokat.png" alt="Самокат"></span>
+                        </div>
+                        <div class="task-card__footer">
+                            <div class="task-card__tags">
+                                <span class="task-card__tag">Дизайн</span>
+                                <span class="task-card__tag">UI/UX</span>
+                                <span class="task-card__tag">Прототипирование</span>
+                            </div>
+                            <button class="task-card__like" type="button" aria-label="Добавить в избранное">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.99938C0 2.60984 2.79985 0 6.08628 0C7.78035 0 9.27104 0.843638 10.3408 1.93524C11.4105 0.843638 12.9012 0 14.5952 0C17.8817 0 20.6815 2.60984 20.6815 5.99938C20.6815 8.32125 19.7492 10.3631 18.4576 12.0891C17.1682 13.812 15.4815 15.2743 13.8666 16.4626C13.2498 16.9164 12.6258 17.3351 12.0547 17.644C11.5184 17.934 10.9018 18.1997 10.3408 18.1997C9.77971 18.1997 9.16309 17.934 8.62683 17.644C8.05572 17.3351 7.43171 16.9164 6.81489 16.4626C5.19998 15.2743 3.51334 13.812 2.22394 12.0891C0.9323 10.3631 0 8.32126 0 5.99938ZM6.08628 1.88273C3.62902 1.88273 1.7727 3.80199 1.7727 5.99938C1.7727 7.76098 2.4768 9.4011 3.61169 10.9176C4.74881 12.4371 6.27882 13.7777 7.8244 14.9149C8.40925 15.3453 8.96011 15.7114 9.4313 15.9663C9.93735 16.24 10.2305 16.317 10.3408 16.317C10.4511 16.317 10.7442 16.24 11.2502 15.9663C11.7214 15.7114 12.2723 15.3453 12.8571 14.9149C14.4027 13.7777 15.9327 12.4371 17.0698 10.9176C18.2047 9.4011 18.9088 7.76098 18.9088 5.99938C18.9088 3.80199 17.0525 1.88273 14.5952 1.88273C13.184 1.88273 11.8662 2.77819 11.0434 3.91473C10.8756 4.14648 10.616 4.28229 10.3408 4.28229C10.0655 4.28229 9.80588 4.14648 9.6381 3.91473C8.81529 2.77819 7.49752 1.88273 6.08628 1.88273Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </main>
+        <section class="employers" id="employers-section">
+            <div class="employers__container container">
+                <h2 class="employers__title gradient-text">РАБОТОДАТЕЛИ</h2>
+                <p class="employers__subtitle">На платформе зарегистрированы крупные компании, технологические стартапы и государственные организации, которые доверяют студентам свои реальные задачи</p>
+                
+                <div class="employers__grid">
+                    <div class="employers__brand"><img src="/image/megamarket.png" alt="Мегамаркет" class="employers__logo"></div>
+                    <div class="employers__brand"><img src="/image/netologia.png" alt="Нетология" class="employers__logo"></div>
+                    <div class="employers__brand"><img src="/image/samokat.png" alt="Самокат" class="employers__logo"></div>
+                    <div class="employers__brand"><img src="/image/plan.png" alt="Самолет" class="employers__logo"></div>
+                    <div class="employers__brand"><img src="/image/vkusno-i-tochka.png" alt="Вкусно и точка" class="employers__logo"></div>
+                    <div class="employers__brand"><img src="/image/yandex_lavka.png" alt="Яндекс Лавка" class="employers__logo"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="about" id="about-section">
+            <div class="about__container container">
+                <h2 class="about__title gradient-text">О НАС</h2>
+                <div class="about__banner">
+                    <div class="banner__icon-wrapper">
+                        <div class="banner__icon"><svg xmlns="http://www.w3.org/2000/svg" width="110" height="131" viewBox="0 0 110 131" fill="none">
+                            <path d="M17.6 78.7999C25.1111 78.7999 31.2 72.7109 31.2 65.1999C31.2 57.6888 25.1111 51.5999 17.6 51.5999C10.0889 51.5999 4 57.6888 4 65.1999C4 72.7109 10.0889 78.7999 17.6 78.7999Z" stroke="#095FFF" stroke-width="8"/>
+                            <path d="M92.4 31.2C99.9111 31.2 106 25.1111 106 17.6C106 10.0889 99.9111 4 92.4 4C84.8889 4 78.8 10.0889 78.8 17.6C78.8 25.1111 84.8889 31.2 92.4 31.2Z" stroke="#095FFF" stroke-width="8"/>
+                            <path d="M28.65 55.634L78.6198 26.7839" stroke="#095FFF" stroke-width="8"/>
+                            <path d="M92.4 99.1999C99.9111 99.1999 106 105.289 106 112.8C106 120.311 99.9111 126.4 92.4 126.4C84.8889 126.4 78.8 120.311 78.8 112.8C78.8 105.289 84.8889 99.1999 92.4 99.1999Z" stroke="#095FFF" stroke-width="8"/>
+                            <path d="M28.65 76.416L78.6196 105.266" stroke="#095FFF" stroke-width="8"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="banner__text banner">
+                        Биржа фриланса БГИТУ — это официальная цифровая экосистема, 
+                        <br>которая связывает реальный бизнес с лучшими студентами IT, 
+                        <br>дизайна и аналитики. Мы помогаем компаниям решать 
+                        <br>операционные задачи, а студентам — находить первые 
+                        <br>коммерческие заказы под контролем университета.
+                    </p>
+                </div>
+
+                <div class="about__feedback feedback">
+                    <p class="feedback__title">Есть вопросы? Оставьте свою почту и мы с Вами свяжемся</p>
+                    
+                    <form action="" method="POST" class="feedback__form">
+                        <div class="feedback__input-group">
+                            <input 
+                                type="email" 
+                                name="user_email" 
+                                class="feedback__input" 
+                                placeholder="Почта" 
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                        <button type="submit" class="feedback__btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__brand-block">
+                <div class="footer__logo logo" width="240px" height="70px">
+                    <a href="/index.html"><image src="/image/it_logo.png" width="70px" height="70px" mode=""></a>
+                    <div class="logo__text">БГИТУ <br><div class="logo__info">Биржа фриланса</div></div>
+                </div>
+            </div>
+
+            <div class="footer__nav-group">
+                <div class="footer__nav-column">
+                    <h4 class="footer__nav-title">Студенту</h4>
+                    <ul class="footer__nav-list">
+                        <li><a href="tasks-company.html" class="footer__nav-link">Задачи</a></li>
+                        <li><a href="companies-student.html" class="footer__nav-link">Работодатели</a></li>
+                    </ul>
+                </div>
+                <div class="footer__nav-column">
+                    <h4 class="footer__nav-title">Работодателю</h4>
+                    <ul class="footer__nav-list">
+                        <li><a href="tasks-company.html" class="footer__nav-link">Задачи</a></li>
+                        <li><a href="students-company.html" class="footer__nav-link">Студенты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="footer__bottom">
+                <a href="https://bgitu.ru" target="" rel="" class="footer__link">Официальный сайт БГИТУ</a>
+                <a href="https://vk.com/bgitu_ru" class="footer__social" aria-label="Мы ВКонтакте"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="47" viewBox="0 0 48 47" fill="none">
+                    <path d="M0 22.3341C0 11.8057 0 6.54152 3.37413 3.27076C6.74826 0 12.1788 0 23.04 0H24.96C35.8212 0 41.2517 0 44.6259 3.27076C48 6.54152 48 11.8057 48 22.3341V24.1953C48 34.7238 48 39.9879 44.6259 43.2587C41.2517 46.5294 35.8212 46.5294 24.96 46.5294H23.04C12.1788 46.5294 6.74826 46.5294 3.37413 43.2587C0 39.9879 0 34.7238 0 24.1953V22.3341Z" fill="#0077FF"/>
+                    <path d="M25.54 33.5207C14.6 33.5207 8.3601 26.2505 8.1001 14.1528H13.5801C13.7601 23.0322 17.8 26.7933 21 27.5688V14.1528H26.1602V21.8108C29.3202 21.4812 32.6398 17.9915 33.7598 14.1528H38.9199C38.0599 18.8833 34.4599 22.373 31.8999 23.8077C34.4599 24.9709 38.5601 28.0147 40.1201 33.5207H34.4399C33.2199 29.8371 30.1802 26.9872 26.1602 26.5995V33.5207H25.54Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+    </footer>   
+
+
+    <script>
+    // ОТКРЫТИЕ/ЗАКРЫТИЕ МОДАЛЬНЫХ ОКОН
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    
+    const openLoginBtn = document.getElementById('openModalBtn');
+    const openRegisterBtn = document.getElementById('openRegisterBtn');
+
+    openLoginBtn.addEventListener('click', () => {
+        registerModal.classList.remove('show');
+        loginModal.classList.add('show');
+    });
+
+    openRegisterBtn.addEventListener('click', () => {
+        loginModal.classList.remove('show');
+        registerModal.classList.add('show');
+    });
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('show');
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.classList.remove('show');
+        }
+    });
+
+    // ВЫБОР КНОПОК В РЕГИСТРАЦИИ
+    function selectToggle(type, element, value) {
+        const parentGroup = element.parentElement;
+        const buttons = parentGroup.querySelectorAll('.register-card__toggle-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+        
+        if (type === 'status') {
+            const inputField = document.getElementById('dynamic-input');
+            inputField.value = ""; 
+            
+            if (value === 'company') {
+                inputField.placeholder = "Название компании";
+            } else if (value === 'student') {
+                inputField.placeholder = "Номер курса";
+            }
+        }
+    }
+
+    // ============================================
+    //  ВХОД (ОТПРАВКА НА СЕРВЕР)
+    // ============================================
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('userRole', data.role);
+                    localStorage.setItem('userName', data.name);
+                    localStorage.setItem('companyName', data.companyName || '');
+                    localStorage.setItem('userGroup', data.group || '');
+                    localStorage.setItem('userId', data.id);
+                    
+                    window.location.href = 'tasks-company.html';
+                } else {
+                    alert(data.error || 'Неверный логин или пароль');
+                }
+            } catch (error) {
+                console.error('Ошибка входа:', error);
+                alert('Ошибка подключения к серверу. Проверьте, запущен ли сервер.');
+            }
+        });
+    }
+
+    // ============================================
+    //  РЕГИСТРАЦИЯ (ОТПРАВКА НА СЕРВЕР)
+    // ============================================
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('reg-email').value;
+            const name = document.getElementById('reg-name').value;
+            const password = document.getElementById('reg-password').value;
+            const passwordConfirm = document.getElementById('reg-password-confirm').value;
+            
+            if (password !== passwordConfirm) {
+                alert('Пароли не совпадают!');
+                return;
+            }
+            
+            const activeStatusBtn = document.querySelector('#status-group .register-card__toggle-btn.active');
+            let role = 'student';
+            if (activeStatusBtn && activeStatusBtn.textContent.toLowerCase().includes('компан')) {
+                role = 'company';
+            }
+            
+            const dynamicValue = document.getElementById('dynamic-input').value.trim();
+            const companyName = role === 'company' ? dynamicValue : '';
+            const userGroup = role === 'student' ? dynamicValue : '';
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ email, password, name, role, companyName, userGroup })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('userRole', data.role);
+                    localStorage.setItem('userName', data.name);
+                    localStorage.setItem('companyName', data.companyName || '');
+                    localStorage.setItem('userGroup', data.group || '');
+                    localStorage.setItem('userId', data.userId);
+                    
+                    window.location.href = 'tasks-company.html';
+                } else {
+                    alert(data.error || 'Ошибка регистрации');
+                }
+            } catch (error) {
+                console.error('Ошибка регистрации:', error);
+                alert('Ошибка подключения к серверу. Проверьте, запущен ли сервер.');
+            }
+        });
+    }
+    </script>
+</body>
+</html>
