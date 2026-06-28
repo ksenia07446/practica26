@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>БГИТУ - Биржа фриланса</title>
+    <link rel="icon" href="/image/it_logo.png" type="image/png">
     <link rel="stylesheet" href="/css/style.css">
     <script src="js/script.js"></script>
     <script src="https://kit.fontawesome.com/e0534cbc26.js" crossorigin="anonymous"></script>
@@ -30,7 +31,7 @@
             <span class="modal__close" onclick="closeModal('registerModal')">&times;</span>
             <div class="register-card">
                 <h2 class="register-card__title gradient-text">РЕГИСТРАЦИЯ</h2>
-                
+
                 <form class="register-card__form" id="registerForm">
                     <input type="email" id="reg-email" placeholder="Почта" required autocomplete="username" class="register-card__input">
                     <input type="text" id="reg-name" placeholder="ФИО" required autocomplete="name" class="register-card__input">
@@ -56,7 +57,7 @@
 
                     <input type="password" placeholder="Пароль" required autocomplete="new-password" class="register-card__input" id="reg-password">
                     <input type="password" placeholder="Пароль повторно" required autocomplete="new-password" class="register-card__input" id="reg-password-confirm">
-                    
+
                     <button type="submit" class="register-card__submit-btn">Зарегистрироваться</button>
                 </form>
             </div>
@@ -422,7 +423,7 @@
             <div class="employers__container container">
                 <h2 class="employers__title gradient-text">РАБОТОДАТЕЛИ</h2>
                 <p class="employers__subtitle">На платформе зарегистрированы крупные компании, технологические стартапы и государственные организации, которые доверяют студентам свои реальные задачи</p>
-                
+
                 <div class="employers__grid">
                     <div class="employers__brand"><img src="/image/megamarket.png" alt="Мегамаркет" class="employers__logo"></div>
                     <div class="employers__brand"><img src="/image/netologia.png" alt="Нетология" class="employers__logo"></div>
@@ -450,24 +451,24 @@
                         </div>
                     </div>
                     <p class="banner__text banner">
-                        Биржа фриланса БГИТУ — это официальная цифровая экосистема, 
-                        <br>которая связывает реальный бизнес с лучшими студентами IT, 
-                        <br>дизайна и аналитики. Мы помогаем компаниям решать 
-                        <br>операционные задачи, а студентам — находить первые 
+                        Биржа фриланса БГИТУ — это официальная цифровая экосистема,
+                        <br>которая связывает реальный бизнес с лучшими студентами IT,
+                        <br>дизайна и аналитики. Мы помогаем компаниям решать
+                        <br>операционные задачи, а студентам — находить первые
                         <br>коммерческие заказы под контролем университета.
                     </p>
                 </div>
 
                 <div class="about__feedback feedback">
                     <p class="feedback__title">Есть вопросы? Оставьте свою почту и мы с Вами свяжемся</p>
-                    
+
                     <form action="" method="POST" class="feedback__form">
                         <div class="feedback__input-group">
-                            <input 
-                                type="email" 
-                                name="user_email" 
-                                class="feedback__input" 
-                                placeholder="Почта" 
+                            <input
+                                type="email"
+                                name="user_email"
+                                class="feedback__input"
+                                placeholder="Почта"
                                 required
                                 autocomplete="email"
                             >
@@ -508,7 +509,7 @@
                 </div>
             </div>
 
-            
+
         </div>
         <div class="footer__bottom">
                 <a href="https://bgitu.ru" target="" rel="" class="footer__link">Официальный сайт БГИТУ</a>
@@ -518,14 +519,14 @@
                     </svg>
                 </a>
             </div>
-    </footer>   
+    </footer>
 
 
     <script>
     // ОТКРЫТИЕ/ЗАКРЫТИЕ МОДАЛЬНЫХ ОКОН
     const loginModal = document.getElementById('loginModal');
     const registerModal = document.getElementById('registerModal');
-    
+
     const openLoginBtn = document.getElementById('openModalBtn');
     const openRegisterBtn = document.getElementById('openRegisterBtn');
 
@@ -555,11 +556,11 @@
         const buttons = parentGroup.querySelectorAll('.register-card__toggle-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
         element.classList.add('active');
-        
+
         if (type === 'status') {
             const inputField = document.getElementById('dynamic-input');
-            inputField.value = ""; 
-            
+            inputField.value = "";
+
             if (value === 'company') {
                 inputField.placeholder = "Название компании";
             } else if (value === 'student') {
@@ -568,17 +569,15 @@
         }
     }
 
-    // ============================================
     //  ВХОД (ОТПРАВКА НА СЕРВЕР)
-    // ============================================
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            
+
             try {
                 const response = await fetch('/api/auth/login', {
                     method: 'POST',
@@ -586,16 +585,16 @@
                     credentials: 'include',
                     body: JSON.stringify({ email, password })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     localStorage.setItem('userRole', data.role);
                     localStorage.setItem('userName', data.name);
                     localStorage.setItem('companyName', data.companyName || '');
                     localStorage.setItem('userGroup', data.group || '');
                     localStorage.setItem('userId', data.id);
-                    
+
                     window.location.href = 'tasks-company.html';
                 } else {
                     alert(data.error || 'Неверный логин или пароль');
@@ -607,9 +606,7 @@
         });
     }
 
-    // ============================================
     //  РЕГИСТРАЦИЯ (ОТПРАВКА НА СЕРВЕР)
-    // ============================================
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
