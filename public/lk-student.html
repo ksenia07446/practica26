@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
+    <link rel="icon" href="/image/it_logo.png" type="image/png">
     <link rel="stylesheet" href="/css/style.css">
     <script src="js/script.js"></script>
     <script src="https://kit.fontawesome.com/e0534cbc26.js" crossorigin="anonymous"></script>
@@ -26,15 +27,12 @@
             <div class="header__actions--log">
                 <a href="#create-order" class="header__btn btn__order--log" data-role="company-only">Создать заказ</a>
                 <div class="actions__group">
-                    <!-- Кнопка Выйти -->
                     <button class="header__auth-logout" type="button">Выйти</button>
-                    
-                    <!-- Иконка профиля -->
+
                     <a href="#profile" class="header__profile-avatar">
                         <div><i class="fa-regular fa-user"></i></div>
                     </a>
 
-                    <!-- Кнопка темы с вашей луной -->
                     <button class="header__btn header__btn--theme" type="button" aria-label="Переключить тему"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7909 2.16846C6.40197 2.54492 2.14738 7.02665 2.14738 12.5C2.14738 18.2201 6.79422 22.8571 12.5264 22.8571C17.1187 22.8571 21.0152 19.8803 22.3826 15.7552C21.3303 16.1891 20.1769 16.4286 18.9685 16.4286C14.027 16.4286 10.0211 12.4311 10.0211 7.5C10.0211 5.50122 10.6798 3.65584 11.7909 2.16846ZM0 12.5C0 5.59644 5.60825 0 12.5264 0C13.17 0 13.803 0.0485373 14.4217 0.142313C14.8497 0.207184 15.1968 0.522192 15.302 0.941231C15.4072 1.36027 15.2499 1.80136 14.9031 2.05992C13.2411 3.29907 12.1685 5.2744 12.1685 7.5C12.1685 11.2476 15.213 14.2857 18.9685 14.2857C20.5923 14.2857 22.0805 13.7191 23.2497 12.7723C23.5857 12.5003 24.0525 12.456 24.4338 12.6601C24.8151 12.8642 25.0364 13.2768 24.9951 13.7066C24.3861 20.0446 19.0368 25 12.5264 25C5.60825 25 0 19.4036 0 12.5Z" fill="black"/>
                         </svg>
@@ -48,20 +46,16 @@
 
 
     <main class="profile container">
-        <!-- Блок информации о пользователе -->
         <section class="profile__user-info user-info">
-            <!-- Пустая аватарка (заглушка в виде иконки пользователя) -->
             <div class="user-info__avatar">
                 <i class="fa-regular fa-user"></i>
             </div>
             
             <div class="user-info__details">
-                <!-- Сюда JS подставит имя и фамилию -->
                 <h1 class="user-info__name gradient-card" id="profile-name">Загрузка...</h1>
                 <p class="user-info__specialization">Web-разработка (Frontend)</p>
                 <div class="user-info__meta">
                     <span class="user-info__level">Junior+</span>
-                    <!-- Сюда JS подставит группу вместо курса -->
                     <span class="user-info__group" id="profile-group">Группа...</span>
                 </div>
             </div>
@@ -72,18 +66,14 @@
             </div>
         </section>
 
-        <!-- Сетка задач (Активные и Выполненные) -->
         <div class="profile__tasks-columns">
-            <!-- Колонна Активных задач -->
             <section class="tasks-column">
                 <h2 class="tasks-column__title gradient-card">Активные задачи</h2>
-                <!-- Если задач нет, JS покажет заглушку, иначе — карточки -->
                 <div class="tasks-column__list" id="active-tasks-container">
                     <p class="tasks-column__empty">У вас пока нет активных задач</p>
                 </div>
             </section>
 
-            <!-- Колонна Выполненных задач -->
             <section class="tasks-column">
                 <h2 class="tasks-column__title gradient-card">Выполненные задачи</h2>
                 <div class="tasks-column__list" id="completed-tasks-container">
@@ -141,10 +131,8 @@
             <button class="modal-close-btn" id="closeModalBtn" type="button" aria-label="Закрыть">&times;</button>
             
             <form class="order-form" id="createOrderForm">
-                <!-- Название задачи (Сохраняем поле ввода имени) -->
                 <input type="text" class="order-form__input" id="taskTitle" placeholder="Название задачи" required>
-                
-                <!-- Бюджет (от / до / фикс и поле Оплата как на скриншоте) -->
+
                 <div class="order-form__row">
                     <div class="order-form__checkbox-group">
                         <input type="radio" id="priceFromCheck" name="priceType" value="от ">
@@ -160,8 +148,7 @@
                     </div>
                     <input type="text" class="order-form__input order-form__input--price" id="taskPrice" placeholder="Оплата" required>
                 </div>
-                
-                <!-- Срочность и Уровень задачи -->
+
                 <div class="order-form__row">
                     <div class="order-form__checkbox-group">
                         <input type="checkbox" id="urgentTask">
@@ -175,8 +162,7 @@
                         <label class="level-radio"><input type="radio" name="level" value="Senior"> Senior</label>
                     </div>
                 </div>
-                
-                <!-- Фильтры/Теги (Полный набор элементов в точности со скриншота) -->
+
                 <div class="order-form__filters-box">
                     <p class="filters-box__title">Фильтры:</p>
                     <div class="filters-box__tags" id="modalTagsContainer">
@@ -207,14 +193,11 @@
                         <span class="modal-tag" data-tag="Разработка сайтов">Разработка сайтов</span>
                     </div>
                 </div>
-                
-                <!-- Стек разработок -->
+
                 <input type="text" class="order-form__input" id="taskStack" placeholder="Стек">
-                
-                <!-- Текстовое описание -->
+
                 <textarea class="order-form__textarea" id="taskDesc" placeholder="Описание" rows="3"></textarea>
-                
-                <!-- Срок выполнения и кнопка публикации -->
+
                 <div class="order-form__row order-form__row--footer">
                     <input type="text" class="order-form__input order-form__input--date" id="taskDeadline" placeholder="Срок сдачи">
                     <button type="submit" class="order-form__submit-btn">Опубликовать</button>
